@@ -4,11 +4,13 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mysql = require("promise-mysql");
 var onFinished = require("on-finished");
+var cors = require("cors");
 
 var appRouter = require("./routes/routes");
 
 var app = express();
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
