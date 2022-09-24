@@ -3,6 +3,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mysql = require("promise-mysql");
+var onFinished = require("on-finished");
 
 var appRouter = require("./routes/routes");
 
@@ -26,16 +27,16 @@ const config = {
 app.use(async (req, res, next) => {
   let conn = await mysql.createConnection(config);
   res.locals.conn = conn;
+
+  // end mysql on finish.
+  onFinished(res, async (err, res) => {
+    await res.locals.conn.end();
+  });
+
   return next();
 });
 
 // app router
 app.use(appRouter);
-
-// end mysql
-app.use(async (req, res, next) => {
-  await res.locals.conn.end();
-  return next();
-});
 
 module.exports = app;
