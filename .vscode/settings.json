@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/ce21431e-d741-4afa-99c1-41c80e419654/AppServices/subscriptions/ce21431e-d741-4afa-99c1-41c80e419654/resourceGroups/rice-hackathon-2022/providers/Microsoft.Web/sites/WeBikeWeSwearBackend",
+  "appService.deploySubpath": "."
+}
